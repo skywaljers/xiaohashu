@@ -1,5 +1,6 @@
 package com.skywalker.xiaohashuauth.controller;
 
+import com.skywalker.framework.biz.operationlog.aspect.ApiOperationLog;
 import com.skywalker.framework.common.response.Response;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
     @GetMapping("/test")
+    @ApiOperationLog(description = "测试接口")
     public Response<String> test(){
         return Response.success("skywalker");
     }

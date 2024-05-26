@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/skywalker-framework/skywalker-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/skywalker-framework/skywalker-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skywalker-framework/skywalker-spring-boot-starter-biz-operationlog/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/skywalker-framework/skywalker-spring-boot-starter-biz-operationlog/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/skywalker-framework/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/skywalker-framework/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
