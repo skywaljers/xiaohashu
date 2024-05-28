@@ -1,0 +1,42 @@
+#数据源配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://154.201.80.80:3306/xiaohashu?userUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    druid:
+      initial-size: 5 #初始化大小
+      min-idle: 5 #最小空闲
+      max-active: 20 #最大连接
+      max-wait: 60000 #最大等待时间
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000 #配置多久检测一次需要关闭的链接
+      min-evictable-idle-time-millis: 300000 #配置连接在池中最小生存时间
+      max-evictable-idle-time-millis: 900000 #配置连接在池中最大生存时间
+      validation-query: select 1 from dual #配置检测连接是否有效
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true #是否缓存 PreparedStatement，默认为 false
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/* #配置druid监控管理后台的访问路径
+        login-username: admin #配置监控管理后台的登录用户名
+        login-password: admin #配置监控管理后台的登录密码
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true #是否打印慢sql
+          slow-sql-millis: 2000 #消耗时长大于2s，则视为慢SQL
+          merge-sql: true
+        wall: #配置防火墙，防止 SQL 注入攻击
+          config:
+            multi-statement-allow: true
+#      connection-properties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMjFGdXzjSEBR7l80bmhPLnozdfdDg7/tRP2R0iYZPSkZmlxl4G7MFDVI6Vcn4s/fKOd2eDk+sAUDG99BeGiyZ0CAwEAAQ==
+#    type: com.alibaba.druid.pool.DruidDataSource
+#打印日志级别
+logging:
+  level:
+    com.skywalker.xiaohashuauth.domain.mapper: debug

@@ -17,19 +17,16 @@ import java.time.format.DateTimeFormatter;
  */
 public class JsonUtils {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     static {
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);
+        OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);
+        OBJECT_MAPPER.registerModules(new JavaTimeModule());
+    }
 
-        JavaTimeModule javaTimeModule = new JavaTimeModule();
-
-        //支持 LocalDateTime
-        javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DateConstants.Y_M_D_H_M_S_FORMAT)));
-        javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(DateConstants.Y_M_D_H_M_S_FORMAT)));
-        //解决LocalDateTime序列化问题
-        objectMapper.registerModules(new JavaTimeModule());
+    public static void init(ObjectMapper objectMapper) {
+        OBJECT_MAPPER = objectMapper;
     }
 
     /**
@@ -39,6 +36,6 @@ public class JsonUtils {
      */
     @SneakyThrows
     public static String toJsonString(Object obj){
-        return objectMapper.writeValueAsString(obj);
+        return OBJECT_MAPPER.writeValueAsString(obj);
     }
 }
